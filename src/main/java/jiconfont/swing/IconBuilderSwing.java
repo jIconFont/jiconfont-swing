@@ -5,6 +5,8 @@ import jiconfont.IconCode;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
@@ -46,37 +48,37 @@ public class IconBuilderSwing
     setColor(Color.BLACK);
   }
 
-  public final Image buildImage() {
-    return buildImage(Character.toString(getIcon().getUnicode()));
+  public final IconBuilderSwing setSize(int size) {
+    return setSize((float) size);
   }
 
   public final Icon buildIcon() {
     return new ImageIcon(buildImage());
   }
 
-  public final IconBuilderSwing setSize(int size) {
-    return setSize((float) size);
+  public final Image buildImage() {
+    return buildImage(Character.toString(getIcon().getUnicode()));
   }
 
-  private BufferedImage buildImage(String label) {
+  private BufferedImage buildImage(String text) {
     Font font = buildFont();
-    font = font.deriveFont(getSize());
-    FontRenderContext frc = new FontRenderContext(null, true, true);
-    TextLayout layout = new TextLayout(label, font, frc);
-    Rectangle r = layout.getPixelBounds(null, 0, 0);
-    BufferedImage bi =
-      new BufferedImage(r.width + 2, r.height + 2, BufferedImage.TYPE_INT_ARGB);
-    Graphics2D g2d = (Graphics2D) bi.getGraphics();
-    g2d.setColor(getColor());
-    layout.draw(g2d, 0, -r.y);
-    g2d.dispose();
-    return bi;
+    JLabel label = new JLabel(text);
+    label.setFont(font);
+    Dimension dim = label.getPreferredSize();
+    label.setSize(dim);
+    int width = dim.width;
+    int height = dim.height;
+    BufferedImage bufImage =
+      new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    label.paint(bufImage.createGraphics());
+    return bufImage;
   }
 
   protected final Font buildFont() {
     try {
-      return Font.createFont(Font.TRUETYPE_FONT,
-        getIcon().getFontInputStream());
+      Font font =
+        Font.createFont(Font.TRUETYPE_FONT, getIcon().getFontInputStream());
+      return font.deriveFont(getSize());
     }
     catch (Exception ex) {
       Logger.getLogger(IconBuilderSwing.class.getName()).log(Level.SEVERE,
@@ -89,4 +91,5 @@ public class IconBuilderSwing
   protected Class<IconBuilderSwing> getIconFontClass() {
     return IconBuilderSwing.class;
   }
+
 }
