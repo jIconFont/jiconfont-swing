@@ -65,7 +65,7 @@ public class IconBuilderSwing
     TextLayout layout = new TextLayout(label, font, frc);
     Rectangle r = layout.getPixelBounds(null, 0, 0);
     BufferedImage bi =
-      new BufferedImage(r.width + 1, r.height + 1, BufferedImage.TYPE_INT_ARGB);
+      new BufferedImage(r.width + 2, r.height + 2, BufferedImage.TYPE_INT_ARGB);
     Graphics2D g2d = (Graphics2D) bi.getGraphics();
     g2d.setColor(getColor());
     layout.draw(g2d, 0, -r.y);
