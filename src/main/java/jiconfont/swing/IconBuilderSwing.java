@@ -70,7 +70,10 @@ public class IconBuilderSwing
     int height = dim.height;
     BufferedImage bufImage =
       new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-    label.paint(bufImage.createGraphics());
+    Graphics2D g2d = bufImage.createGraphics();
+    label.print(g2d);
+    g2d.dispose();
+    bufImage.getWidth();
     return bufImage;
   }
 
