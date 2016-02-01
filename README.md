@@ -1,6 +1,6 @@
 # jIconFont - Swing
 
 #LICENSE
-jIconFont is released under the MIT license. See LICENSE file for details.
+jIconFont is distributed under the terms of the [MIT license](http://opensource.org/licenses/mit-license.html). See LICENSE file for details.
 
 

@@ -75,9 +75,8 @@ public class IconBuilderSwing
 
   protected final Font buildFont() {
     try {
-      InputStream is =
-        IconBuilderSwing.class.getResourceAsStream(getIcon().getFontPath());
-      return Font.createFont(Font.TRUETYPE_FONT, is);
+      return Font.createFont(Font.TRUETYPE_FONT,
+        getIcon().getFontInputStream());
     }
     catch (Exception ex) {
       Logger.getLogger(IconBuilderSwing.class.getName()).log(Level.SEVERE,
