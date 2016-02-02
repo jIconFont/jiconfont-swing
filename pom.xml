@@ -4,26 +4,68 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>jiconfont</groupId>
-    <artifactId>jiconfont-swing</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-
-    <name>jIconFont - Swing</name>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <groupId>com.github.jiconfont</groupId>
+    <artifactId>jiconfont-swing</artifactId>
+    <version>0.10.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>jIconFont - Swing</name>
+    <description>jIconFont-Swing is a API to provide icons generated from any IconFont. These icons can be used in
+        JavaFX.
+    </description>
+    <url>https://github.com/jIconFont/jiconfont-javafx</url>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>http://opensource.org/licenses/mit-license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:jIconFont/jiconfont-swing.git</connection>
+        <url>scm:git:git@github.com:jIconFont/jiconfont-swing.git</url>
+        <developerConnection>scm:git:git@github.com:jIconFont/jiconfont-swing.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>caduandrade</id>
+            <name>Cadu Andrade</name>
+            <email>cadu@caduandrade.net</email>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
-            <groupId>jiconfont</groupId>
+            <groupId>com.github.jiconfont</groupId>
             <artifactId>jiconfont</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.9.0</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -32,6 +74,49 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

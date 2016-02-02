@@ -24,5 +24,5 @@ import jiconfont.StackedIconBuilder;
  * SOFTWARE.
  */
 public class StackedIconBuilderSwing
-  extends StackedIconBuilder<IconBuilderSwing> {
+        extends StackedIconBuilder<IconBuilderSwing> {
 }
