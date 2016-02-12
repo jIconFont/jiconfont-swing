@@ -73,9 +73,8 @@ public class IconFontSwing {
     public static Image buildImage(IconCode iconCode, float size, Color color) {
         Font font = buildFont(iconCode, size);
         String text = Character.toString(iconCode.getUnicode());
-        return buildImage(text, font);
+        return buildImage(text, font, color);
     }
-
 
     public static Icon buildIcon(IconCode iconCode, float size) {
         return buildIcon(iconCode, size, Color.BLACK);
@@ -85,8 +84,9 @@ public class IconFontSwing {
         return new ImageIcon(buildImage(iconCode, size, color));
     }
 
-    private static BufferedImage buildImage(String text, Font font) {
+    private static BufferedImage buildImage(String text, Font font, Color color) {
         JLabel label = new JLabel(text);
+        label.setForeground(color);
         label.setFont(font);
         Dimension dim = label.getPreferredSize();
         label.setSize(dim);
