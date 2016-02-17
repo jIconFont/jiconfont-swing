@@ -10,7 +10,7 @@
 
     <groupId>com.github.jiconfont</groupId>
     <artifactId>jiconfont-swing</artifactId>
-    <version>0.10.2-SNAPSOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>jIconFont - Swing</name>
