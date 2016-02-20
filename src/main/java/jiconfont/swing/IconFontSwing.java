@@ -6,12 +6,7 @@ import jiconfont.IconFont;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,17 +34,28 @@ import java.util.logging.Logger;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-public class IconFontSwing {
+public final class IconFontSwing {
 
 
     private static List<IconFont> fonts = new ArrayList<>();
 
+    /**
+     * Register an icon font.
+     *
+     * @param iconFont the icon font.
+     */
     public static synchronized void register(IconFont iconFont) {
         if (IconFontSwing.fonts.contains(iconFont) == false) {
             IconFontSwing.fonts.add(iconFont);
         }
     }
 
+    /**
+     * Builds a font.
+     *
+     * @param fontFamily the font family.
+     * @return the font.
+     */
     public static synchronized final Font buildFont(String fontFamily) {
         try {
             for (IconFont iconFont : IconFontSwing.fonts) {
@@ -71,20 +77,50 @@ public class IconFontSwing {
     private IconFontSwing() {
     }
 
+    /**
+     * Builds an image.
+     *
+     * @param iconCode the icon code.
+     * @param size     the size.
+     * @return the image.
+     */
     public static Image buildImage(IconCode iconCode, float size) {
         return buildImage(iconCode, size, Color.BLACK);
     }
 
+    /**
+     * Builds an image.
+     *
+     * @param iconCode the icon code.
+     * @param size     the size.
+     * @param color    the size.
+     * @return the image.
+     */
     public static Image buildImage(IconCode iconCode, float size, Color color) {
         Font font = buildFont(iconCode, size);
         String text = Character.toString(iconCode.getUnicode());
         return buildImage(text, font, color);
     }
 
+    /**
+     * Builds an icon.
+     *
+     * @param iconCode the icon code.
+     * @param size     the size.
+     * @return the icon.
+     */
     public static Icon buildIcon(IconCode iconCode, float size) {
         return buildIcon(iconCode, size, Color.BLACK);
     }
 
+    /**
+     * Builds an icon.
+     *
+     * @param iconCode the icon code.
+     * @param size     the size.
+     * @param color    the size.
+     * @return the icon.
+     */
     public static Icon buildIcon(IconCode iconCode, float size, Color color) {
         return new ImageIcon(buildImage(iconCode, size, color));
     }
